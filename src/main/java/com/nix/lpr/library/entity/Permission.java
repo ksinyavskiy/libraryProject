@@ -2,18 +2,39 @@ package com.nix.lpr.library.entity;
 
 import java.util.Objects;
 import java.util.Set;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
+import javax.persistence.Table;
 
+@Entity
+@Table(name = "permission")
 public class Permission {
-    private Integer id;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Integer permissionId;
+    @Column(name = "NAME", length = 20, unique = true, nullable = false)
     private String name;
+    @ManyToMany(fetch = FetchType.EAGER)
+    @JoinTable(
+            name = "role_permission",
+            joinColumns = @JoinColumn(name = "ROLE_ID"),
+            inverseJoinColumns = @JoinColumn(name = "PERMISSION_ID")
+    )
     private Set<Role> roles;
 
-    public Integer getId() {
-        return id;
+    public Integer getPermissionId() {
+        return permissionId;
     }
 
-    public void setId(Integer id) {
-        this.id = id;
+    public void setPermissionId(Integer permissionId) {
+        this.permissionId = permissionId;
     }
 
     public String getName() {
@@ -43,7 +64,7 @@ public class Permission {
         }
 
         Permission permission = (Permission) object;
-        return Objects.equals(id, permission.getId()) && Objects.equals(name, permission.getName());
+        return Objects.equals(permissionId, permission.getPermissionId()) && Objects.equals(name, permission.getName());
     }
 
     @Override

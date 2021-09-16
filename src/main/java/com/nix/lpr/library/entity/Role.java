@@ -8,18 +8,18 @@ import java.util.Objects;
 public class Role {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer id;
+    private Integer roleId;
     @Column(name = "NAME", length = 15, unique = true, nullable = false)
     private String name;
     @Column(name = "DESCRIPTION", length = 100, nullable = false)
     private String description;
 
-    public Integer getId() {
-        return id;
+    public Integer getRoleId() {
+        return roleId;
     }
 
-    public void setId(Integer id) {
-        this.id = id;
+    public void setRoleId(Integer id) {
+        this.roleId = id;
     }
 
     public String getName() {
@@ -49,14 +49,14 @@ public class Role {
         }
 
         Role role = (Role) object;
-        return Objects.equals(id, role.getId()) &&
+        return Objects.equals(roleId, role.getRoleId()) &&
                 Objects.equals(name, role.getName()) &&
                 Objects.equals(description, role.getDescription());
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, name, description);
+        return Objects.hash(roleId, name, description);
     }
 
     @Override

@@ -8,7 +8,7 @@ import java.util.Objects;
 public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer id;
+    private Integer userId;
     @Column(name = "LAST_NAME", length = 30, nullable = false)
     private String lastName;
     @Column(name = "FIRST_NAME", length = 30, nullable = false)
@@ -23,12 +23,12 @@ public class User {
     @JoinColumn(name = "ROLE_ID")
     private Role role;
 
-    public Integer getId() {
-        return id;
+    public Integer getUserId() {
+        return userId;
     }
 
-    public void setId(Integer id) {
-        this.id = id;
+    public void setUserId(Integer id) {
+        this.userId = id;
     }
 
     public String getLastName() {
@@ -90,7 +90,7 @@ public class User {
         }
 
         User user = (User) object;
-        return Objects.equals(id, user.getId()) &&
+        return Objects.equals(userId, user.getUserId()) &&
                 Objects.equals(lastName, user.getLastName()) &&
                 Objects.equals(firstName, user.getFirstName()) &&
                 Objects.equals(login, user.getLogin()) &&
@@ -100,11 +100,11 @@ public class User {
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, lastName, firstName, login, password, email);
+        return Objects.hash(userId, lastName, firstName, login, password, email);
     }
 
     @Override
     public String toString() {
-        return String.format("User: id - %d, login - %s", id, login);
+        return String.format("User: id - %d, login - %s", userId, login);
     }
 }
