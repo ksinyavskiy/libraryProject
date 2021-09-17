@@ -1,14 +1,11 @@
 package com.nix.lpr.library.entity;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import java.util.Objects;
-import java.util.Set;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 
 @Entity
@@ -19,9 +16,6 @@ public class Permission {
     private Integer permissionId;
     @Column(name = "NAME", length = 20, unique = true, nullable = false)
     private String name;
-    @ManyToMany(mappedBy = "permissions")
-    @JsonIgnore
-    private Set<Role> roles;
 
     public Integer getPermissionId() {
         return permissionId;
@@ -39,13 +33,6 @@ public class Permission {
         this.name = name;
     }
 
-    public Set<Role> getRoles() {
-        return roles;
-    }
-
-    public void setRoles(Set<Role> roles) {
-        this.roles = roles;
-    }
 
     @Override
     public boolean equals(Object object) {
