@@ -27,6 +27,11 @@ public class UserManagementController {
         userService.addUser(user);
     }
 
+    @GetMapping(path = "delete/{userId}", produces = "application/json;charset=UTF-8")
+    public void deleteUser(@PathVariable Integer userId) {
+        userService.deleteUser(userId);
+    }
+
     @GetMapping(path = "{userId}", produces = "application/json;charset=UTF-8")
     public User getUser(@PathVariable Integer userId) {
         return userService.getUserById(userId);
