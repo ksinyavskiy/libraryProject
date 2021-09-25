@@ -2,8 +2,9 @@ package com.nix.lpr.library.service;
 
 import com.nix.lpr.library.entity.User;
 import java.util.List;
+import org.springframework.security.core.userdetails.UserDetailsService;
 
-public interface UserService {
+public interface UserService extends UserDetailsService {
     void addUser(User user);
 
     void deleteUser(Integer userId);
