@@ -1,5 +1,6 @@
 package com.nix.lpr.library.config.security;
 
+import com.nix.lpr.library.entity.UserRole;
 import com.nix.lpr.library.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
@@ -42,7 +43,7 @@ public class SpringSecurityConfig extends WebSecurityConfigurerAdapter {
                 .csrf().disable()
                 .authorizeRequests()
                 .antMatchers("/users/**")
-                .permitAll()
+                .hasRole(UserRole.ADMIN.toString())
                 .anyRequest()
                 .authenticated()
                 .and()
