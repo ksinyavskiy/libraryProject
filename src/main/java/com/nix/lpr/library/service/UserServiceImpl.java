@@ -52,7 +52,7 @@ public class UserServiceImpl implements UserService {
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
         User user = userRepository.getUserByLogin(username);
         return new org.springframework.security.core.userdetails.User(
-                user.getLogin(),
+                String.valueOf(user.getUserId()),
                 passwordEncoder.encode(user.getPassword()),
                 getUserAuthorities(user)
         );
