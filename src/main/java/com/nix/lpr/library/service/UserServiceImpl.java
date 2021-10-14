@@ -1,5 +1,6 @@
 package com.nix.lpr.library.service;
 
+import com.nix.lpr.library.entity.Permission;
 import com.nix.lpr.library.entity.User;
 import com.nix.lpr.library.exception.entity.UserNotFoundException;
 import com.nix.lpr.library.repository.UserRepository;
@@ -60,7 +61,8 @@ public class UserServiceImpl implements UserService {
 
     private Set<GrantedAuthority> getUserAuthorities(User user) {
         Set<GrantedAuthority> grantedAuthorities =  user.getRole().getPermissions().stream()
-                   .map(permission -> new SimpleGrantedAuthority(permission.getName()))
+                   .map(Permission::getName)
+                   .map(SimpleGrantedAuthority::new)
                    .collect(Collectors.toSet());
         grantedAuthorities.add(new SimpleGrantedAuthority("ROLE_" + user.getRole().getName()));
 
