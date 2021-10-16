@@ -17,6 +17,12 @@ public class SpringSecurityConfig extends WebSecurityConfigurerAdapter {
 
     private final UserService userService;
     private final PasswordEncoder passwordEncoder;
+    // these paths are important, the full access to Swagger will not work without them
+    private final String[] WHITE_LIST_URL = new String[]{
+            "/v2/api-docs/**",
+            "/swagger-resources/**",
+            "/swagger-ui/**"
+    };
 
     @Autowired
     public SpringSecurityConfig(UserService userService, PasswordEncoder passwordEncoder) {
@@ -42,12 +48,10 @@ public class SpringSecurityConfig extends WebSecurityConfigurerAdapter {
         http
                 .csrf().disable()
                 .authorizeRequests()
-                .antMatchers("/users/{userId}")
-                .access("hasRole('ADMIN') or principal.username == #userId")
-                .antMatchers("/users/**")
-                .hasRole(UserRole.ADMIN.toString())
-                .anyRequest()
-                .authenticated()
+                .antMatchers(WHITE_LIST_URL).permitAll()
+                .antMatchers("/users/{userId}").access("hasRole('ADMIN') or principal.username == #userId")
+                .antMatchers("/users/**").hasRole(UserRole.ADMIN.toString())
+                .anyRequest().authenticated()
                 .and()
                 .httpBasic();
     }
