@@ -2,17 +2,15 @@ package com.nix.lpr.library.exception.entity;
 
 import org.springframework.http.HttpStatus;
 
-import java.time.ZonedDateTime;
-
 public class CustomRestApiException {
     private final String message;
     private final HttpStatus httpStatus;
-    private final ZonedDateTime zonedDateTime;
+    private final String dateTimeStamp;
 
-    public CustomRestApiException(String message, HttpStatus httpStatus, ZonedDateTime zonedDateTime) {
+    public CustomRestApiException(String message, HttpStatus httpStatus, String dateTimeStamp) {
         this.message = message;
         this.httpStatus = httpStatus;
-        this.zonedDateTime = zonedDateTime;
+        this.dateTimeStamp = dateTimeStamp;
     }
 
     public String getMessage() {
@@ -23,7 +21,7 @@ public class CustomRestApiException {
         return httpStatus;
     }
 
-    public ZonedDateTime getZonedDateTime() {
-        return zonedDateTime;
+    public String getDateTimeStamp() {
+        return dateTimeStamp;
     }
 }
