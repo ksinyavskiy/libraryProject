@@ -1,5 +1,6 @@
 package com.nix.lpr.library.controller;
 
+import com.nix.lpr.library.dto.UserDto;
 import com.nix.lpr.library.entity.User;
 import com.nix.lpr.library.service.UserService;
 
@@ -7,12 +8,7 @@ import java.util.List;
 
 import io.swagger.annotations.*;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping(path = "users")
@@ -54,6 +50,15 @@ public class UserManagementController {
                     value = "User unique ID value from the database.", example = "2", required = true)
             @PathVariable Integer userId) {
         return userService.getUserById(userId);
+    }
+
+    @GetMapping(path = "getViewByEmail", produces = "application/json;charset=UTF-8")
+    @ApiOperation(value = "Get user view.",
+            notes = "Get user specific view via user email value", response = UserDto.class)
+    public UserDto getViewByEmail(
+            @ApiParam(name = "email", type = "String", value = "User email value from DB", required = true)
+            @RequestParam("email") String email) {
+        return userService.getUserViewByEmail(email);
     }
 
     @GetMapping

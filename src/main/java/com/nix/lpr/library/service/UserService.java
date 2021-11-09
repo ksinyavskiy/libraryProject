@@ -1,5 +1,6 @@
 package com.nix.lpr.library.service;
 
+import com.nix.lpr.library.dto.UserDto;
 import com.nix.lpr.library.entity.User;
 import java.util.List;
 import org.springframework.security.core.userdetails.UserDetailsService;
@@ -10,6 +11,8 @@ public interface UserService extends UserDetailsService {
     void deleteUser(Integer userId);
 
     User getUserById(Integer id);
+
+    UserDto getUserViewByEmail(String email);
 
     List<User> getUsers();
 }
