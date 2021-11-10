@@ -1,6 +1,7 @@
 package com.nix.lpr.library.service;
 
 import com.nix.lpr.library.dto.UserDto;
+import com.nix.lpr.library.dto.UserView;
 import com.nix.lpr.library.entity.Permission;
 import com.nix.lpr.library.entity.User;
 import com.nix.lpr.library.exception.entity.UserNotFoundException;
@@ -50,6 +51,11 @@ public class UserServiceImpl implements UserService {
         return userRepository
                 .getByEmail(email)
                 .orElseThrow(() -> new UserNotFoundException(String.format("User with %s email doesn't exist", email)));
+    }
+
+    @Override
+    public UserView getUserViewByLogin(String login) {
+        return userRepository.getByLogin(login);
     }
 
     @Override

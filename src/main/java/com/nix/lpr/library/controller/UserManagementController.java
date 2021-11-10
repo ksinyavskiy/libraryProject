@@ -1,14 +1,23 @@
 package com.nix.lpr.library.controller;
 
 import com.nix.lpr.library.dto.UserDto;
+import com.nix.lpr.library.dto.UserView;
 import com.nix.lpr.library.entity.User;
 import com.nix.lpr.library.service.UserService;
-
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
+import io.swagger.annotations.ApiParam;
+import io.swagger.annotations.ApiResponse;
+import io.swagger.annotations.ApiResponses;
 import java.util.List;
-
-import io.swagger.annotations.*;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequestMapping(path = "users")
@@ -59,6 +68,14 @@ public class UserManagementController {
             @ApiParam(name = "email", type = "String", value = "User email value from DB", required = true)
             @RequestParam("email") String email) {
         return userService.getUserViewByEmail(email);
+    }
+
+    @GetMapping(path = "getViewByLogin/{login}", produces = "application/json;charset=UTF-8")
+    @ApiOperation(value = "Get user view.", notes = "Get user specific view using his login", response = UserView.class)
+    public UserView getViewByLogin(
+            @ApiParam(name = "login", type = "String", value = "User login from DB", example = "lol42", required = true)
+            @PathVariable("login") String login) {
+        return userService.getUserViewByLogin(login);
     }
 
     @GetMapping
