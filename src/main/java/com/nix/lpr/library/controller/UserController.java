@@ -22,12 +22,12 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequestMapping(path = "users")
 @Api(description = "Management system that performs actions with library users.", produces = "application/json")
-public class UserManagementController {
+public class UserController {
 
     private final UserService userService;
 
     @Autowired
-    public UserManagementController(UserService userService) {
+    public UserController(UserService userService) {
         this.userService = userService;
     }
 
