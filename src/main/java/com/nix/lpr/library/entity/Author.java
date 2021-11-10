@@ -17,7 +17,7 @@ public class Author {
     private String lastName;
     @Column(name = "FIRST_NAME", length = 30, nullable = false)
     private String firstName;
-    @Column(name = "NICK_NAME", length = 40, nullable = false)
+    @Column(name = "NICK_NAME", length = 40)
     private String nickName;
     @Column(name = "BIRTH_DATE", nullable = false, columnDefinition = "DATE")
     private LocalDate birthDate;

@@ -33,3 +33,7 @@ INSERT INTO user (USER_ID, ROLE_ID, FIRST_NAME, LAST_NAME, LOGIN, PASSWORD, EMAI
 VALUES(9, 2, 'Draik', 'Robertson', 'pirat1020', 'password987', 'pirat@gmail.com');
 INSERT INTO user (USER_ID, ROLE_ID, FIRST_NAME, LAST_NAME, LOGIN, PASSWORD, EMAIL)
 VALUES (10, 2, 'Georgiy', 'Rudkovskiy', 'rusUk85', 'passGo_Re852', 'chernCom@gmail.com');
+
+/* authors */
+INSERT INTO author(AUTHOR_ID, LAST_NAME, FIRST_NAME, NICK_NAME, BIRTH_DATE)
+VALUES (1, 'Толстой', 'Лев', null, )
