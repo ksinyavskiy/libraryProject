@@ -21,7 +21,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequestMapping(path = "users")
-@Api(description = "Library management system that performs actions with library users.", produces = "application/json")
+@Api(description = "Management system that performs actions with library users.", produces = "application/json")
 public class UserManagementController {
 
     private final UserService userService;
