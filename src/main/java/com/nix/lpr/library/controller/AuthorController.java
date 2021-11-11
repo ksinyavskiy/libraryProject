@@ -5,8 +5,8 @@ import com.nix.lpr.library.service.AuthorService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
+import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -38,10 +38,8 @@ public class AuthorController {
 
     @GetMapping
     @ApiOperation(value = "Get all authors.", notes = "Get paginated list of all authors from DB.")
-    public Page<Author> getAuthors(
-            @ApiParam(name = "pageable", type = "org.springframework.data.domain.Pageable", required = true)
-            Pageable pageable) {
-       return authorService.getAuthors(pageable);
+    public List<Author> getAuthors(Pageable pageable) {
+       return authorService.getAuthors(pageable).getContent();
     }
 
 }

@@ -36,4 +36,12 @@ VALUES (10, 2, 'Georgiy', 'Rudkovskiy', 'rusUk85', 'passGo_Re852', 'chernCom@gma
 
 /* authors */
 INSERT INTO author(AUTHOR_ID, LAST_NAME, FIRST_NAME, NICK_NAME, BIRTH_DATE)
-VALUES (1, 'Толстой', 'Лев', null, )
+VALUES (1, 'Толстой', 'Лев', null, '1828-09-28');
+INSERT INTO author(AUTHOR_ID, LAST_NAME, FIRST_NAME, NICK_NAME, BIRTH_DATE)
+VALUES (2, 'Булгаков', 'Михаил', null, '1891-06-15');
+INSERT INTO author(AUTHOR_ID, LAST_NAME, FIRST_NAME, NICK_NAME, BIRTH_DATE)
+VALUES (3, 'Чехов', 'Антон', 'Антоша Чехонте', '1860-01-29');
+INSERT INTO author(AUTHOR_ID, LAST_NAME, FIRST_NAME, NICK_NAME, BIRTH_DATE)
+VALUES (4, 'Достоевский', 'Федор', 'Друг Козьмы Пруткова', '1821-11-11');
+INSERT INTO author(AUTHOR_ID, LAST_NAME, FIRST_NAME, NICK_NAME, BIRTH_DATE)
+VALUES (5, 'Есенин', 'Сергей', null, '1895-10-03');
