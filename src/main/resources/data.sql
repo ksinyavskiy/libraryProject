@@ -45,3 +45,12 @@ INSERT INTO author(AUTHOR_ID, LAST_NAME, FIRST_NAME, NICK_NAME, BIRTH_DATE)
 VALUES (4, 'Достоевский', 'Федор', 'Друг Козьмы Пруткова', '1821-11-11');
 INSERT INTO author(AUTHOR_ID, LAST_NAME, FIRST_NAME, NICK_NAME, BIRTH_DATE)
 VALUES (5, 'Есенин', 'Сергей', null, '1895-10-03');
+
+/* genres */
+INSERT INTO genre(GENRE_ID, NAME, DESCRIPTION)
+VALUES(1, 'Роман-эпопея',
+ 'Обширное эпическое повествование в стихах или прозе о выдающихся национально-исторических событиях');
+
+ /* books */
+ INSERT INTO book(BOOK_ID, NAME, PUBLISH_YEAR, AUTHOR_ID, GENRE_ID)
+ VALUES(1, 'Война и мир', 1865, 1, 1);
