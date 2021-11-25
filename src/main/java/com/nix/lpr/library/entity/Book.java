@@ -1,5 +1,7 @@
 package com.nix.lpr.library.entity;
 
+import java.time.LocalDateTime;
+import javax.persistence.EntityListeners;
 import lombok.Data;
 
 import javax.persistence.Column;
@@ -10,10 +12,15 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+import org.springframework.data.annotation.CreatedDate;
+import org.springframework.data.annotation.LastModifiedBy;
+import org.springframework.data.annotation.LastModifiedDate;
+import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 @Entity
 @Table(name = "book")
 @Data
+@EntityListeners(AuditingEntityListener.class)
 public class Book {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -28,4 +35,13 @@ public class Book {
     @ManyToOne
     @JoinColumn(name = "GENRE_ID")
     private Genre genre;
+    @Column(name = "CREATED_AT", nullable = false, updatable = false)
+    @CreatedDate
+    private LocalDateTime createdAt;
+    @Column(name = "LAST_MODIFIED")
+    @LastModifiedDate
+    private LocalDateTime lastModified;
+    @Column(name = "MODIFIED_BY")
+    @LastModifiedBy
+    private String modifiedBy;
 }
