@@ -52,5 +52,5 @@ VALUES(1, 'Роман-эпопея',
  'Обширное эпическое повествование в стихах или прозе о выдающихся национально-исторических событиях');
 
  /* books */
- INSERT INTO book(BOOK_ID, NAME, PUBLISH_YEAR, AUTHOR_ID, GENRE_ID, CREATED_AT, LAST_MODIFIED, MODIFIED_BY)
- VALUES(1, 'Война и мир', 1865, 1, 1, '2021-11-25', null, null);
+ INSERT INTO book(BOOK_ID, NAME, PUBLISH_YEAR, AUTHOR_ID, GENRE_ID, CREATED_AT, LAST_MODIFIED, MODIFIED_BY, VERSION)
+ VALUES(1, 'Война и мир', 1865, 1, 1, '2021-11-25', null, null, 1);

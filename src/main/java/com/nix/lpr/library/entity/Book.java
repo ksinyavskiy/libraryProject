@@ -2,6 +2,7 @@ package com.nix.lpr.library.entity;
 
 import java.time.LocalDateTime;
 import javax.persistence.EntityListeners;
+import javax.persistence.Version;
 import lombok.Data;
 
 import javax.persistence.Column;
@@ -44,4 +45,7 @@ public class Book {
     @Column(name = "MODIFIED_BY")
     @LastModifiedBy
     private String modifiedBy;
+    @Column(name = "VERSION")
+    @Version
+    private Integer version;
 }
