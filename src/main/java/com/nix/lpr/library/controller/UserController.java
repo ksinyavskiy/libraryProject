@@ -84,4 +84,13 @@ public class UserController {
     public List<User> getUsers() {
         return userService.getUsers();
     }
+
+    @GetMapping(path = "email")
+    @ApiOperation(value = "Get users operation.",
+            notes = "Get all users which prefix email is the same as specified in the input data.",
+            response = List.class)
+    public List<User> getUsersByPrefixEmail(@RequestParam("prefixEmail") String prefixEmail) {
+        return userService.getUsersByEmailStartsWith(prefixEmail);
+    }
+
 }

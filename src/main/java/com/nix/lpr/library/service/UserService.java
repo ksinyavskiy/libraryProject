@@ -18,4 +18,6 @@ public interface UserService extends UserDetailsService {
     UserView getUserViewByLogin(String login);
 
     List<User> getUsers();
+
+    List<User> getUsersByEmailStartsWith(String emailPrefix);
 }

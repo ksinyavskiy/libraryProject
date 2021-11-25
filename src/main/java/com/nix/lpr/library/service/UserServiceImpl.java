@@ -10,6 +10,8 @@ import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Example;
+import org.springframework.data.domain.ExampleMatcher;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -61,6 +63,17 @@ public class UserServiceImpl implements UserService {
     @Override
     public List<User> getUsers() {
         return userRepository.findAll();
+    }
+
+    @Override
+    public List<User> getUsersByEmailStartsWith(String emailPrefix) {
+        User user = new User();
+        user.setEmail(emailPrefix);
+
+        ExampleMatcher prefixEmailMatcher = ExampleMatcher
+                                        .matchingAll()
+                                        .withMatcher("email", ExampleMatcher.GenericPropertyMatchers.startsWith());
+        return userRepository.findAll(Example.of(user, prefixEmailMatcher));
     }
 
     @Override
