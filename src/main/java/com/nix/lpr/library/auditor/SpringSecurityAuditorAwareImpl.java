@@ -1,7 +1,6 @@
 package com.nix.lpr.library.auditor;
 
-import com.nix.lpr.library.entity.User;
-import com.nix.lpr.library.repository.UserRepository;
+import com.nix.lpr.library.service.UserService;
 import java.util.Optional;
 import lombok.AllArgsConstructor;
 import org.springframework.data.domain.AuditorAware;
@@ -13,7 +12,7 @@ import org.springframework.stereotype.Service;
 @Service
 @AllArgsConstructor
 public class SpringSecurityAuditorAwareImpl implements AuditorAware<String> {
-    private final UserRepository userRepository;
+    private final UserService userService;
 
     @Override
     public Optional<String> getCurrentAuditor() {
@@ -26,8 +25,8 @@ public class SpringSecurityAuditorAwareImpl implements AuditorAware<String> {
         // I store userId as username in the Principal object because of the need to perform Spring Security setup correctly
         // Don't hit me ;)
         Integer userId = Integer.parseInt(((UserDetails) authentication.getPrincipal()).getUsername());
-        return userRepository
-                .findById(userId)
-                .map(User::getLogin);
+        return Optional.ofNullable(userService
+                                           .getUserById(userId)
+                                           .getLogin());
     }
 }
