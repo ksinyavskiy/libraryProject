@@ -5,7 +5,6 @@ import com.nix.lpr.library.exception.handler.RestSecurityExceptionHandler;
 import com.nix.lpr.library.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.AuthenticationProvider;
 import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
@@ -14,7 +13,6 @@ import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.crypto.password.PasswordEncoder;
-import org.springframework.security.web.AuthenticationEntryPoint;
 
 @EnableWebSecurity
 @EnableGlobalMethodSecurity(prePostEnabled = true)
@@ -59,6 +57,7 @@ public class SpringSecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers(WHITE_LIST_URL).permitAll()
                 .antMatchers("/users/{userId}").access("hasRole('ADMIN') or principal.username == #userId")
                 .antMatchers("/users/**").hasRole(UserRole.ADMIN.toString())
+                .antMatchers("/authors/**").hasRole(UserRole.ADMIN.toString())
                 .anyRequest().authenticated()
                 .and()
                 .exceptionHandling()
